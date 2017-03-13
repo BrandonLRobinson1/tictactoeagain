@@ -50,9 +50,7 @@ var board1 = ['---'];
 var board2 = ['---'];
 var board3 = ['---'];
 
-// board1[0].charAt(1) = 'x';
-// console.log(board1[0])
-
+//shows board
 var showBoard = () => { console.log(
   chalk.blue(
     figlet.textSync(board1, { horizontalLayout: 'full'} )
@@ -69,26 +67,41 @@ console.log(
     )
   )
 }
+//shows board off the grop
+//showBoard();
 
-showBoard();
 
-inquirer.prompt([{position: 'where would you like to go player', message: 'what spot?', name: 'playerwhat'}]).then(function (answers) {
+var addToBoard = (row, column) => {
+  if (row === 1) {
+    board = board1
+  }
+  if (row === 2) {
+    board = board2
+  }
+  if (row === 3) {
+    board = board2
+  }
+
+  var newboard = board.join().split('')
+  //console.log(newboard)
+  newboard[column] = 'x'
+  //console.log(newboard)
+
+  board1 = newboard.join();
+
+  showBoard()
+
+}
+
+addToBoard(1,1);
+
+//
+inquirer.prompt([
+  {position: 'where would you like to go player', message: 'what row(1,2,3)?', name: 'player1row'},
+  {position: 'where would you like to go player', message: 'what column(1,2,3)?', name: 'player1column'}
+  ]).then(function (answers) {
     // Use user feedback for... whatever!! 
     console.log(answers)
-    
 });
 
 
-// function gameTime(callback) {
-//   var ttt = [
-//     {
-//       position: 0
-//     }
-//   ];
-
-//   .prompt(ttt).then(callback);
-// }
-
-// gameTime(function(){
-//   console.log(arguments);
-// });
